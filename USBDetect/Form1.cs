@@ -9,6 +9,7 @@ using System.IO.Ports;
 using System.Windows.Forms;
 
 //CodeProjectSerialComms program 
+//Author - glennPattonWork -link https://www.codeproject.com/Articles/678025/Serial-Comms-in-Csharp-for-Beginners 
 //23/04/2013   16:29
 
 namespace CodeProjectSerialComms
