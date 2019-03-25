@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.IO.Ports;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace USBDetect
@@ -53,5 +54,10 @@ namespace USBDetect
         {
             Application.Exit();
         }
-    }
+
+        private void btnRun_Click(object sender, System.EventArgs e)
+        {
+
+        }
+}
 }

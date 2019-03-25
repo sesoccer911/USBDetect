@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeProjectSerialComms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace USBDetect
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PrimaryForm());
+            Application.Run(new Form1());
         }
     }
 }
