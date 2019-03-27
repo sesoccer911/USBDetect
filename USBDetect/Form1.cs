@@ -221,6 +221,14 @@ namespace CodeProjectSerialComms
 
         }
 
-      
+        private void cboPorts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboBaudRate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -73,6 +73,7 @@
             this.cboPorts.Name = "cboPorts";
             this.cboPorts.Size = new System.Drawing.Size(121, 21);
             this.cboPorts.TabIndex = 2;
+            this.cboPorts.SelectedIndexChanged += new System.EventHandler(this.cboPorts_SelectedIndexChanged);
             // 
             // cboBaudRate
             // 
@@ -81,6 +82,7 @@
             this.cboBaudRate.Name = "cboBaudRate";
             this.cboBaudRate.Size = new System.Drawing.Size(121, 21);
             this.cboBaudRate.TabIndex = 3;
+            this.cboBaudRate.SelectedIndexChanged += new System.EventHandler(this.cboBaudRate_SelectedIndexChanged);
             // 
             // cboDataBits
             // 
