@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -8,14 +9,17 @@ namespace USBDetect
     public partial class PrimaryForm : Form
     {
         //CommunicationManager comm = new CommunicationManager();
-        static SerialPort comm = new SerialPort("COM4", 112500);
-        string transType = string.Empty;
-        
+        static SerialPort comm = new SerialPort("COM5", 112500);
+        //string transType = string.Empty;
+        public StreamWriter transType ;
 
         public PrimaryForm()
         {
             InitializeComponent();
             comm.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+            transType = new StreamWriter(Console.OpenStandardOutput());
+            Console.SetOut(transType);
+            richTextBox1.AppendText(Convert.ToString(transType));
         }
 
         private void PrimaryForm_Load(object sender, EventArgs e)
@@ -33,7 +37,7 @@ namespace USBDetect
             Console.WriteLine("Data Received:");
 
             Console.Write(indata);
-            Console.SetOut(richTextBox1);
+  
 
         }
 
@@ -43,18 +47,17 @@ namespace USBDetect
             //int baudRate = Convert.ToInt32(cboBaudRate.Text);
 
 
-            //comm.PortName = cboPorts.Text;
-            //comm.Parity = "None";
-            //comm.StopBits = "1";
-            //comm.DataBits = "8";
-            //comm.BaudRate = cboBaudRate.Text;
-            //SerialPort port = new SerialPort(portName, baudRate);
+            comm.PortName = cboPorts.Text;
+            comm.Parity = "None";
+            comm.StopBits = "1";
+            comm.DataBits = "8";
+            comm.BaudRate = cboBaudRate.Text;
+            SerialPort port = new SerialPort(portName, baudRate);
             
 
             if (btnPortState.Text == "Port Closed")
             {
                 btnPortState.Text = "Port Open";
-
                 //port = new SerialPort(portName, baudRate);
                 //port.Open();
                 comm.Open();
@@ -151,7 +154,7 @@ namespace USBDetect
         private void btnSend_Click(object sender, EventArgs e)
         {
             comm.WriteLine(txtbxInput.Text);
-            richTextBox1.("Sending ");
+            
             txtbxInput.Text = "";
         }
     }
