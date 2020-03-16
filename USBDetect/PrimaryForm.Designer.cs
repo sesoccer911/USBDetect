@@ -30,7 +30,7 @@
         {
             this.btnClose = new System.Windows.Forms.Button();
             this.btnRun = new System.Windows.Forms.Button();
-            this.txtbxInput = new System.Windows.Forms.TextBox();
+            this.txtCommand = new System.Windows.Forms.TextBox();
             this.cboBaudRate = new System.Windows.Forms.ComboBox();
             this.cboPorts = new System.Windows.Forms.ComboBox();
             this.btnGetSerialPorts = new System.Windows.Forms.Button();
@@ -39,8 +39,16 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtbxUsername = new System.Windows.Forms.TextBox();
             this.txtbxPassword = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtbIncoming = new System.Windows.Forms.RichTextBox();
             this.btnSend = new System.Windows.Forms.Button();
+            this.cboStopBits = new System.Windows.Forms.ComboBox();
+            this.cboParity = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblRIStatus = new System.Windows.Forms.Label();
+            this.lblDSRStatus = new System.Windows.Forms.Label();
+            this.lblCTSStatus = new System.Windows.Forms.Label();
+            this.lblBreakStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnClose
@@ -53,7 +61,6 @@
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnRun
             // 
@@ -65,16 +72,15 @@
             this.btnRun.TabIndex = 2;
             this.btnRun.Text = "Run";
             this.btnRun.UseVisualStyleBackColor = true;
-            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
-            // txtbxInput
+            // txtCommand
             // 
-            this.txtbxInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtbxInput.Enabled = false;
-            this.txtbxInput.Location = new System.Drawing.Point(12, 234);
-            this.txtbxInput.Name = "txtbxInput";
-            this.txtbxInput.Size = new System.Drawing.Size(473, 20);
-            this.txtbxInput.TabIndex = 3;
+            this.txtCommand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCommand.Enabled = false;
+            this.txtCommand.Location = new System.Drawing.Point(12, 234);
+            this.txtCommand.Name = "txtCommand";
+            this.txtCommand.Size = new System.Drawing.Size(473, 20);
+            this.txtCommand.TabIndex = 3;
             // 
             // cboBaudRate
             // 
@@ -146,16 +152,16 @@
             this.txtbxPassword.Size = new System.Drawing.Size(283, 20);
             this.txtbxPassword.TabIndex = 19;
             // 
-            // richTextBox1
+            // rtbIncoming
             // 
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.InfoText;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.richTextBox1.ForeColor = System.Drawing.SystemColors.Info;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(578, 228);
-            this.richTextBox1.TabIndex = 20;
-            this.richTextBox1.Text = "";
+            this.rtbIncoming.BackColor = System.Drawing.SystemColors.InfoText;
+            this.rtbIncoming.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rtbIncoming.ForeColor = System.Drawing.SystemColors.Info;
+            this.rtbIncoming.Location = new System.Drawing.Point(0, 0);
+            this.rtbIncoming.Name = "rtbIncoming";
+            this.rtbIncoming.Size = new System.Drawing.Size(578, 228);
+            this.rtbIncoming.TabIndex = 20;
+            this.rtbIncoming.Text = "";
             // 
             // btnSend
             // 
@@ -165,7 +171,86 @@
             this.btnSend.TabIndex = 21;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // cboStopBits
+            // 
+            this.cboStopBits.FormattingEnabled = true;
+            this.cboStopBits.Items.AddRange(new object[] {
+            "1",
+            "0"});
+            this.cboStopBits.Location = new System.Drawing.Point(93, 320);
+            this.cboStopBits.Name = "cboStopBits";
+            this.cboStopBits.Size = new System.Drawing.Size(121, 21);
+            this.cboStopBits.TabIndex = 22;
+            // 
+            // cboParity
+            // 
+            this.cboParity.FormattingEnabled = true;
+            this.cboParity.Items.AddRange(new object[] {
+            "None"});
+            this.cboParity.Location = new System.Drawing.Point(93, 347);
+            this.cboParity.Name = "cboParity";
+            this.cboParity.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cboParity.Size = new System.Drawing.Size(121, 21);
+            this.cboParity.TabIndex = 23;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(32, 323);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Stop Bits";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(48, 350);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Parity";
+            // 
+            // lblRIStatus
+            // 
+            this.lblRIStatus.AutoSize = true;
+            this.lblRIStatus.Location = new System.Drawing.Point(178, 408);
+            this.lblRIStatus.Name = "lblRIStatus";
+            this.lblRIStatus.Size = new System.Drawing.Size(18, 13);
+            this.lblRIStatus.TabIndex = 29;
+            this.lblRIStatus.Text = "RI";
+            this.lblRIStatus.Visible = false;
+            // 
+            // lblDSRStatus
+            // 
+            this.lblDSRStatus.AutoSize = true;
+            this.lblDSRStatus.Location = new System.Drawing.Point(120, 408);
+            this.lblDSRStatus.Name = "lblDSRStatus";
+            this.lblDSRStatus.Size = new System.Drawing.Size(30, 13);
+            this.lblDSRStatus.TabIndex = 28;
+            this.lblDSRStatus.Text = "DSR";
+            this.lblDSRStatus.Visible = false;
+            // 
+            // lblCTSStatus
+            // 
+            this.lblCTSStatus.AutoSize = true;
+            this.lblCTSStatus.Location = new System.Drawing.Point(69, 408);
+            this.lblCTSStatus.Name = "lblCTSStatus";
+            this.lblCTSStatus.Size = new System.Drawing.Size(28, 13);
+            this.lblCTSStatus.TabIndex = 27;
+            this.lblCTSStatus.Text = "CTS";
+            this.lblCTSStatus.Visible = false;
+            // 
+            // lblBreakStatus
+            // 
+            this.lblBreakStatus.AutoSize = true;
+            this.lblBreakStatus.Location = new System.Drawing.Point(14, 408);
+            this.lblBreakStatus.Name = "lblBreakStatus";
+            this.lblBreakStatus.Size = new System.Drawing.Size(35, 13);
+            this.lblBreakStatus.TabIndex = 26;
+            this.lblBreakStatus.Text = "Break";
+            this.lblBreakStatus.Visible = false;
             // 
             // PrimaryForm
             // 
@@ -173,8 +258,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(578, 430);
+            this.Controls.Add(this.lblRIStatus);
+            this.Controls.Add(this.lblDSRStatus);
+            this.Controls.Add(this.lblCTSStatus);
+            this.Controls.Add(this.lblBreakStatus);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cboParity);
+            this.Controls.Add(this.cboStopBits);
             this.Controls.Add(this.btnSend);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.rtbIncoming);
             this.Controls.Add(this.txtbxPassword);
             this.Controls.Add(this.txtbxUsername);
             this.Controls.Add(this.lblPassword);
@@ -183,7 +276,7 @@
             this.Controls.Add(this.cboBaudRate);
             this.Controls.Add(this.cboPorts);
             this.Controls.Add(this.btnGetSerialPorts);
-            this.Controls.Add(this.txtbxInput);
+            this.Controls.Add(this.txtCommand);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.btnClose);
             this.Name = "PrimaryForm";
@@ -197,7 +290,7 @@
         #endregion
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnRun;
-        private System.Windows.Forms.TextBox txtbxInput;
+        private System.Windows.Forms.TextBox txtCommand;
         private System.Windows.Forms.ComboBox cboBaudRate;
         private System.Windows.Forms.ComboBox cboPorts;
         private System.Windows.Forms.Button btnGetSerialPorts;
@@ -206,8 +299,16 @@
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtbxUsername;
         private System.Windows.Forms.TextBox txtbxPassword;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtbIncoming;
         private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.ComboBox cboStopBits;
+        private System.Windows.Forms.ComboBox cboParity;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblRIStatus;
+        private System.Windows.Forms.Label lblDSRStatus;
+        private System.Windows.Forms.Label lblCTSStatus;
+        private System.Windows.Forms.Label lblBreakStatus;
     }
 }
 
